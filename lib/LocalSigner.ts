@@ -1,8 +1,13 @@
+import { Ed25519KeyPair } from '@transmute/ed25519-key-pair';
+import ErrorCode from './ErrorCode';
 import ISigner from './interfaces/ISigner';
 import InputValidator from './InputValidator';
-import JwkEs256k from './models/JwkEs256k';
+import IonError from './IonError';
+import IonKey from './IonKey';
+import { JWS } from '@transmute/jose-ld';
 import OperationKeyType from './enums/OperationKeyType';
-const secp256k1 = require('@transmute/did-key-secp256k1');
+import { Secp256k1KeyPair } from '@transmute/secp256k1-key-pair';
+import SidetreeKeyJwk from './models/SidetreeKeyJwk';
 
 /**
  * An ISigner implementation that uses a given local private key.
@@ -11,16 +16,47 @@ export default class LocalSigner implements ISigner {
   /**
    * Creates a new local signer using the given private key.
    */
-  public static create (privateKey: JwkEs256k): ISigner {
+  public static create (privateKey: SidetreeKeyJwk): ISigner {
     return new LocalSigner(privateKey);
   }
 
-  private constructor (private privateKey: JwkEs256k) {
-    InputValidator.validateEs256kOperationKey(privateKey, OperationKeyType.Private);
+  private constructor (private privateKey: SidetreeKeyJwk) {
+    InputValidator.validateOperationKey(privateKey, OperationKeyType.Private);
   }
 
   public async sign (header: object, content: object): Promise<string> {
-    const compactJws = await secp256k1.ES256K.sign(content, this.privateKey, header);
-    return compactJws;
+    const publicKeyJwk = {
+      ...this.privateKey,
+      d: undefined
+    };
+    if (IonKey.isJwkEs256k(publicKeyJwk)) {
+      const key = await Secp256k1KeyPair.from({
+        type: 'JsonWebKey2020',
+        publicKeyJwk,
+        privateKeyJwk: this.privateKey
+      } as any);
+      const signer = key.signer();
+      const jwsSigner = await JWS.createSigner(signer, 'ES256K', {
+        detached: false,
+        header
+      });
+      const compactJws = await jwsSigner.sign({ data: content });
+      return compactJws;
+    } else if (IonKey.isJwkEd25519(publicKeyJwk)) {
+      const key = await Ed25519KeyPair.from({
+        type: 'JsonWebKey2020',
+        publicKeyJwk,
+        privateKeyJwk: this.privateKey
+      } as any);
+      const signer = key.signer();
+      const jwsSigner = await JWS.createSigner(signer, 'EdDSA', {
+        detached: false,
+        header
+      });
+      const compactJws = await jwsSigner.sign({ data: content });
+      return compactJws;
+    } else {
+      throw new IonError(ErrorCode.UnsupportedKeyType, `JWK key should be secp256k1 or Ed25119.`);
+    }
   }
 }
