@@ -5,6 +5,9 @@ on:
     release:
         types: [published]
 
+env:
+    NODE_AUTH_TOKEN: ${{ secrets.GHPR_TOKEN }}
+
 jobs:
     deploy_release:
         runs-on: ubuntu-latest
@@ -20,5 +23,4 @@ jobs:
             - run: npm ci
 
             - run: npm publish --access public
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.GHPR_TOKEN }}
+              

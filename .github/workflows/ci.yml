@@ -9,6 +9,9 @@ on:
         branches:
             - main
 
+env:
+    NODE_AUTH_TOKEN: ${{ secrets.GHPR_TOKEN }}
+
 jobs:
     ci:
         runs-on: ubuntu-latest
