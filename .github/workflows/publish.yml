@@ -47,12 +47,10 @@ jobs:
                   tag-prefix: "v"
                   commit-message: "CI: bump version to {{version}} [skip ci]"
                   default: prerelease
-                  minor-wording: "add,added,Adds,new"
-                  major-wording: "MAJOR,cut-major"
-                  patch-wording:
-                      "patch,fixes,fixed,fix" # Providing patch-wording will override commits
-                      # defaulting to a patch bump.
-                  rc-wording: "RELEASE,alpha"
+                  minor-wording: "minor,add,added,Adds,new"
+                  major-wording: "major,MAJOR,cut-major"
+                  patch-wording:  "patch,fixes,fixed,fix"
+                  rc-wording: "rc,RELEASE,alpha"
 
             - run: npm ci
             - run: npm run build

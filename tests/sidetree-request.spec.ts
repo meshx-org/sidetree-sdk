@@ -1,4 +1,4 @@
-import IonDocumentModel from "../src/models/document"
+import Document from "../src/models/document"
 import LocalSigner from "../src/local-signer"
 import OperationType from "../src/enums/operation-type"
 import SidetreeRequest from "../src/sidetree-request"
@@ -14,7 +14,7 @@ describe("SidetreeRequest with Es256k keys", () => {
             const service = require("./vectors/inputs/service1.json")
             const services = [service]
 
-            const document: IonDocumentModel = {
+            const document: Document = {
                 publicKeys,
                 services,
             }
@@ -78,7 +78,7 @@ describe("SidetreeRequest with Es256k keys", () => {
             const service = require("./vectors/inputs/service1.json")
             const services = [service]
 
-            const document: IonDocumentModel = {
+            const document: Document = {
                 publicKeys,
                 services,
             }
@@ -167,7 +167,7 @@ describe("SidetreeRequest with Ed25519 keys", () => {
             const service = require("./vectors/inputs/service1.json")
             const services = [service]
 
-            const document: IonDocumentModel = {
+            const document: Document = {
                 publicKeys,
                 services,
             }
@@ -232,7 +232,7 @@ describe("SidetreeRequest with Ed25519 keys", () => {
             const service = require("./vectors/inputs/service1.json")
             const services = [service]
 
-            const document: IonDocumentModel = {
+            const document: Document = {
                 publicKeys,
                 services,
             }
