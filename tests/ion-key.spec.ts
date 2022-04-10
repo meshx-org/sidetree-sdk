@@ -1,7 +1,7 @@
-import { JwkEd25519, PublicKeyPurpose, SidetreeKey } from "../lib/index"
-import ErrorCode from "../lib/error-code"
+import { JwkEd25519, PublicKeyPurpose, SidetreeKey } from "../src/index"
+import ErrorCode from "../src/error-code"
 import JasmineSidetreeErrorValidator from "./jasmine-ion-error-validator"
-import JwkEs256k from "../lib/models/jwk-es256k"
+import JwkEs256k from "../src/models/jwk-es256k"
 
 describe("IonKey", async () => {
     describe("generateEs256kOperationKeyPair()", async () => {

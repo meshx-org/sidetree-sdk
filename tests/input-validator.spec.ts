@@ -1,6 +1,6 @@
-import InputValidator from "../lib/input-validator"
-import OperationKeyType from "../lib/enums/operation-key-type"
-import SidetreeError from "../lib/sidetree-error"
+import InputValidator from "../src/input-validator"
+import OperationKeyType from "../src/enums/operation-key-type"
+import SidetreeError from "../src/sidetree-error"
 
 describe("IonKey", async () => {
     describe("validateEs256kOperationKey", () => {

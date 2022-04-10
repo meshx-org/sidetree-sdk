@@ -1,7 +1,7 @@
-import IonDocumentModel from "../lib/models/ion-document.model"
-import LocalSigner from "../lib/local-signer"
-import OperationType from "../lib/enums/operation-type"
-import SidetreeRequest from "../lib/sidetree-request"
+import IonDocumentModel from "../src/models/ion-document.model"
+import LocalSigner from "../src/local-signer"
+import OperationType from "../src/enums/operation-type"
+import SidetreeRequest from "../src/sidetree-request"
 
 describe("SidetreeRequest with Es256k keys", () => {
     describe("createCreateRequest", () => {
@@ -147,7 +147,7 @@ describe("SidetreeRequest with Es256k keys", () => {
             } catch (e) {
                 // eslint-disable-next-line
                 expect(e.message).toEqual(
-                    `MultihashUnsupportedHashAlgorithm: Given didSuffix uses unsupported multihash algorithm with code 17, should use 18 or change IonSdkConfig to desired hashing algorithm.`
+                    `MultihashUnsupportedHashAlgorithm: Given didSuffix uses unsupported multihash algorithm with code 17, should use 18 or change SidetreeSdkConfig to desired hashing algorithm.`
                 )
             }
         })
