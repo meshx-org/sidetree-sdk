@@ -1,4 +1,4 @@
 export default interface IonRemoveServicesActionModel {
-    action: string;
-    ids: string[];
+    action: string
+    ids: string[]
 }

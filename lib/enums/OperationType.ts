@@ -2,10 +2,10 @@
  * ION operation types.
  */
 enum OperationType {
-  Create = 'create',
-  Update = 'update',
-  Deactivate = 'deactivate',
-  Recover = 'recover'
+    Create = "create",
+    Update = "update",
+    Deactivate = "deactivate",
+    Recover = "recover",
 }
 
-export default OperationType;
+export default OperationType

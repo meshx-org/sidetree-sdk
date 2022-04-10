@@ -2,8 +2,8 @@
  * Supported ION networks.
  */
 enum IonNetwork {
-  Mainnet = 'mainnet',
-  Testnet = 'test'
+    Mainnet = "mainnet",
+    Testnet = "test",
 }
 
-export default IonNetwork;
+export default IonNetwork

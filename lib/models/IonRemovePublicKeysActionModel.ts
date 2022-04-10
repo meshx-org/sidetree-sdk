@@ -1,4 +1,4 @@
 export default interface IonRemovePublicKeysActionModel {
-    action: string;
-    ids: string[];
+    action: string
+    ids: string[]
 }
