@@ -7,11 +7,11 @@ import * as publicKeyModelEd25519 from "./vectors/inputs/publicKeyModelEd25519.j
 import * as service1 from "./vectors/inputs/service1.json"
 import { PublicKeyPurpose, SidetreeDid, SidetreeKey, SidetreeSdkConfig } from "../src/index"
 import ErrorCode from "../src/error-code"
-import IonDocumentModel from "../src/models/ion-document.model"
-import JasmineSidetreeErrorValidator from "./jasmine-ion-error-validator"
+import IonDocumentModel from "../src/models/document"
+import JasmineSidetreeErrorValidator from "./jasmine-error-validator"
 import { b64urlDecode } from "@waiting/base64"
 
-describe("IonDid", async () => {
+describe("SidetreeDid", async () => {
     afterEach(() => {
         SidetreeSdkConfig.network = undefined
         SidetreeSdkConfig.didMethod = "sidetree"

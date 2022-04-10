@@ -8,7 +8,9 @@ parent:
 </div>
 
 <!-- Header -->
-<p align="center"><img src="docs/github-cover.png" alt="MeshX Identity"></p>
+<p align="center">
+    <img src="https://media.githubusercontent.com/media/meshx-org/sidetree-sdk/main/docs/github-cover.png" alt="Sidetree SDK">
+</p>
 
 <!-- Badges -->
 

@@ -2,9 +2,9 @@
 
 // SDK exports.
 import ISigner from "./interfaces/signer"
-import IonDocumentModel from "./models/ion-document.model"
-import IonPublicKeyModel from "./models/ion-public-key.model"
-import IonServiceModel from "./models/ion-service.model"
+import IonDocumentModel from "./models/document"
+import IonPublicKeyModel from "./models/public-key"
+import IonServiceModel from "./models/service"
 import JwkEd25519 from "./models/jwk-ed25519"
 import JwkEs256k from "./models/jwk-es256k"
 import LocalSigner from "./local-signer"

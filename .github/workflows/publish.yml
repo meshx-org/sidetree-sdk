@@ -6,7 +6,7 @@ on:
         branches:
             - main
         paths:
-            - '**/*.{ts,js}'
+            - "**/*.{ts,js}"
 
 env:
     NODE_AUTH_TOKEN: ${{ secrets.GHPR_TOKEN }}
@@ -45,7 +45,7 @@ jobs:
                   GITHUB_EMAIL: github-actions@github.com
               with:
                   tag-prefix: "v"
-                  commit-message: 'CI: bump version to {{version}} [skip ci]'
+                  commit-message: "CI: bump version to {{version}} [skip ci]"
                   default: prerelease
                   minor-wording: "add,added,Adds,new"
                   major-wording: "MAJOR,cut-major"
