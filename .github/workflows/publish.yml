@@ -5,6 +5,8 @@ on:
     push:
         branches:
             - main
+        paths:
+            - '**/*.{ts,js}'
 
 env:
     NODE_AUTH_TOKEN: ${{ secrets.GHPR_TOKEN }}
@@ -48,7 +50,7 @@ jobs:
                   minor-wording: "add,added,Adds,new"
                   major-wording: "MAJOR,cut-major"
                   patch-wording:
-                      "patch,fixes" # Providing patch-wording will override commits
+                      "patch,fixes,fixed,fix" # Providing patch-wording will override commits
                       # defaulting to a patch bump.
                   rc-wording: "RELEASE,alpha"
 
