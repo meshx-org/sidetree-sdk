@@ -6,7 +6,8 @@ on:
         branches:
             - main
         paths:
-            - "**/*.{ts,js}"
+            - src/**
+            - tests/**
 
 env:
     NODE_AUTH_TOKEN: ${{ secrets.GHPR_TOKEN }}
@@ -37,7 +38,7 @@ jobs:
                   node-version: 16
                   registry-url: "https://npm.pkg.github.com"
 
-            - name: Automated Version Bump
+            - name: Version Bump
               uses: phips28/gh-action-bump-version@master
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -47,10 +48,11 @@ jobs:
                   tag-prefix: "v"
                   commit-message: "CI: bump version to {{version}} [skip ci]"
                   default: prerelease
-                  minor-wording: "minor,add,added,Adds,new"
-                  major-wording: "major,MAJOR,cut-major"
-                  patch-wording:  "patch,fixes,fixed,fix"
-                  rc-wording: "rc,RELEASE,alpha"
+                  minor-wording: "minor"
+                  major-wording: "major"
+                  patch-wording:  "patch"
+                  rc-wording: "rc,pre"
+                  bump-policy: ignore
 
             - run: npm ci
             - run: npm run build
