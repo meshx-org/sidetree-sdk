@@ -3,5 +3,5 @@
 TypeScript SDK for ION
 
 ```
-npm i @decentralized-identity/ion-sdk --save
+npm i @meshx-/ion-sdk --save
 ```
