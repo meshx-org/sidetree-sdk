@@ -1,9 +1,9 @@
 import { JwkEd25519, PublicKeyPurpose, SidetreeKey } from "../src/index"
 import ErrorCode from "../src/error-code"
-import JasmineSidetreeErrorValidator from "./jasmine-ion-error-validator"
+import JasmineSidetreeErrorValidator from "./jasmine-error-validator"
 import JwkEs256k from "../src/models/jwk-es256k"
 
-describe("IonKey", async () => {
+describe("SidetreeKey", async () => {
     describe("generateEs256kOperationKeyPair()", async () => {
         it("should create a key pair successfully.", async () => {
             const [publicKey, privateKey] = await SidetreeKey.generateEs256kOperationKeyPair()

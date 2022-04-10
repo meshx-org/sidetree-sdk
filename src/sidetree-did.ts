@@ -1,5 +1,5 @@
 import Encoder from "./encoder"
-import IonDocumentModel from "./models/ion-document.model"
+import IonDocumentModel from "./models/document"
 import JsonCanonicalizer from "./json-canonicalizer"
 import Multihash from "./multihash"
 import SidetreeKeyJwk from "./models/sidetree-key-jwk"

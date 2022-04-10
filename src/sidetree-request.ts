@@ -1,22 +1,22 @@
 import * as URI from "uri-js"
+import CreateRequest from "./models/operations/create-request"
+import DeactivateRequest from "./models/operations/deactivate-request"
+import Document from "./models/document"
 import ErrorCode from "./error-code"
 import ISigner from "./interfaces/signer"
 import InputValidator from "./input-validator"
-import IonCreateRequestModel from "./models/ion-create-request.model"
-import IonDeactivateRequestModel from "./models/ion-deactivate-request.model"
-import IonDocumentModel from "./models/ion-document.model"
-import IonPublicKeyModel from "./models/ion-public-key.model"
-import IonRecoverRequestModel from "./models/ion-recover-request.model"
-import IonServiceModel from "./models/ion-service.model"
-import IonUpdateRequestModel from "./models/ion-update-request.model"
 import JsonCanonicalizer from "./json-canonicalizer"
 import Multihash from "./multihash"
 import OperationKeyType from "./enums/operation-key-type"
 import OperationType from "./enums/operation-type"
 import PatchAction from "./enums/patch-action"
+import PublicKey from "./models/public-key"
+import RecoverRequest from "./models/operations/recover-request"
+import Service from "./models/service"
 import SidetreeError from "./sidetree-error"
 import SidetreeKeyJwk from "./models/sidetree-key-jwk"
 import SidetreeSdkConfig from "./sidetree-sdk-config"
+import UpdateRequest from "./models/operations/update-request"
 
 /**
  * Class containing operations related to ION requests.
@@ -29,8 +29,8 @@ export default class SidetreeRequest {
     public static createCreateRequest(input: {
         recoveryKey: SidetreeKeyJwk
         updateKey: SidetreeKeyJwk
-        document: IonDocumentModel
-    }): IonCreateRequestModel {
+        document: Document
+    }): CreateRequest {
         const recoveryKey = input.recoveryKey
         const updateKey = input.updateKey
         const didDocumentKeys = input.document.publicKeys
@@ -85,7 +85,7 @@ export default class SidetreeRequest {
         didSuffix: string
         recoveryPublicKey: SidetreeKeyJwk
         signer: ISigner
-    }): Promise<IonDeactivateRequestModel> {
+    }): Promise<DeactivateRequest> {
         // Validate DID suffix
         SidetreeRequest.validateDidSuffix(input.didSuffix)
 
@@ -118,9 +118,9 @@ export default class SidetreeRequest {
         recoveryPublicKey: SidetreeKeyJwk
         nextRecoveryPublicKey: SidetreeKeyJwk
         nextUpdatePublicKey: SidetreeKeyJwk
-        document: IonDocumentModel
+        document: Document
         signer: ISigner
-    }): Promise<IonRecoverRequestModel> {
+    }): Promise<RecoverRequest> {
         // Validate DID suffix
         SidetreeRequest.validateDidSuffix(input.didSuffix)
 
@@ -189,11 +189,11 @@ export default class SidetreeRequest {
         updatePublicKey: SidetreeKeyJwk
         nextUpdatePublicKey: SidetreeKeyJwk
         signer: ISigner
-        servicesToAdd?: IonServiceModel[]
+        servicesToAdd?: Service[]
         idsOfServicesToRemove?: string[]
-        publicKeysToAdd?: IonPublicKeyModel[]
+        publicKeysToAdd?: PublicKey[]
         idsOfPublicKeysToRemove?: string[]
-    }): Promise<IonUpdateRequestModel> {
+    }): Promise<UpdateRequest> {
         // Validate DID suffix
         SidetreeRequest.validateDidSuffix(input.didSuffix)
 
@@ -304,7 +304,7 @@ export default class SidetreeRequest {
         Multihash.validateEncodedHashComputedUsingSupportedHashAlgorithm(didSuffix, "didSuffix")
     }
 
-    private static validateDidDocumentKeys(publicKeys?: IonPublicKeyModel[]) {
+    private static validateDidDocumentKeys(publicKeys?: PublicKey[]) {
         if (publicKeys === undefined) {
             return
         }
@@ -334,7 +334,7 @@ export default class SidetreeRequest {
         }
     }
 
-    private static validateServices(services?: IonServiceModel[]) {
+    private static validateServices(services?: Service[]) {
         if (services !== undefined && services.length !== 0) {
             const serviceIdSet: Set<string> = new Set()
             for (const service of services) {
@@ -347,7 +347,7 @@ export default class SidetreeRequest {
         }
     }
 
-    private static validateService(service: IonServiceModel) {
+    private static validateService(service: Service) {
         InputValidator.validateId(service.id)
 
         const maxTypeLength = 30

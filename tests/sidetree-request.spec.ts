@@ -1,4 +1,4 @@
-import IonDocumentModel from "../src/models/ion-document.model"
+import IonDocumentModel from "../src/models/document"
 import LocalSigner from "../src/local-signer"
 import OperationType from "../src/enums/operation-type"
 import SidetreeRequest from "../src/sidetree-request"
