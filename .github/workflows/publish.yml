@@ -45,13 +45,13 @@ jobs:
                   GITHUB_USER: github-actions
                   GITHUB_EMAIL: github-actions@github.com
               with:
-                  tag-prefix: "v"
+                  tag-prefix: v
                   commit-message: "CI: bump version to {{version}} [skip ci]"
                   default: prerelease
-                  minor-wording: "minor"
-                  major-wording: "major"
-                  patch-wording:  "patch"
-                  rc-wording: "rc,pre"
+                  minor-wording: minor
+                  major-wording: major
+                  patch-wording: patch
+                  rc-wording: rc,pre
                   bump-policy: ignore
 
             - run: npm ci
