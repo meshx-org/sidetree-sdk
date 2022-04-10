@@ -24,6 +24,8 @@ parent:
 
 ---
 
+> This repository is forked from [gjgd/ion-sdk](https://github.com/gjgd/ion-sdk)
+
 [TBD]
 
 ## Installation
