@@ -1,10 +1,10 @@
-import Encoder from "./Encoder"
-import IonDocumentModel from "./models/IonDocumentModel"
-import IonRequest from "./IonRequest"
-import IonSdkConfig from "./IonSdkConfig"
-import JsonCanonicalizer from "./JsonCanonicalizer"
-import Multihash from "./Multihash"
-import SidetreeKeyJwk from "./models/SidetreeKeyJwk"
+import Encoder from "./encoder"
+import IonDocumentModel from "./models/ion-document.model"
+import IonRequest from "./ion-request"
+import IonSdkConfig from "./ion-sdk-config"
+import JsonCanonicalizer from "./json-canonicalizer"
+import Multihash from "./multihash"
+import SidetreeKeyJwk from "./models/sidetree-key-jwk"
 
 /**
  * Class containing DID related operations.

@@ -1,11 +1,11 @@
 import { JsonWebKey2020, Secp256k1KeyPair } from "@transmute/secp256k1-key-pair"
 import { Ed25519KeyPair } from "@transmute/ed25519-key-pair"
-import InputValidator from "./InputValidator"
-import IonPublicKeyModel from "./models/IonPublicKeyModel"
-import IonPublicKeyPurpose from "./enums/IonPublicKeyPurpose"
-import JwkEd25519 from "./models/JwkEd25519"
-import JwkEs256k from "./models/JwkEs256k"
-import SidetreeKeyJwk from "./models/SidetreeKeyJwk"
+import InputValidator from "./input-validator"
+import IonPublicKeyModel from "./models/ion-public-key.model"
+import IonPublicKeyPurpose from "./enums/public-key-purpose"
+import JwkEd25519 from "./models/jwk-ed25519"
+import JwkEs256k from "./models/jwk-es256k"
+import SidetreeKeyJwk from "./models/sidetree-key-jwk"
 const randomBytes = require("randombytes")
 
 /**

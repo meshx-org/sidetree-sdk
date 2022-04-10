@@ -1,5 +1,5 @@
-import IonDocumentModel from "./IonDocumentModel"
-import OperationType from "../enums/OperationType"
+import IonDocumentModel from "./ion-document.model"
+import OperationType from "../enums/operation-type"
 
 /**
  * Data model representing a public key in the DID Document.

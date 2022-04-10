@@ -1,6 +1,6 @@
-import ErrorCode from "../lib/ErrorCode"
+import ErrorCode from "../lib/error-code"
 import JasmineIonErrorValidator from "./JasmineIonErrorValidator"
-import Multihash from "../lib/Multihash"
+import Multihash from "../lib/multihash"
 
 describe("Multihash", async () => {
     describe("hashAsNonMultihashBuffer()", async () => {

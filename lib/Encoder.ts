@@ -1,6 +1,6 @@
 import { b64fromBuffer, b64fromURLSafe, b64toURLSafe } from "@waiting/base64"
-import ErrorCode from "./ErrorCode"
-import IonError from "./IonError"
+import ErrorCode from "./error-code"
+import IonError from "./ion-error"
 
 /**
  * Class that encodes binary blobs into strings.

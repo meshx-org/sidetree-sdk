@@ -1,5 +1,5 @@
-import JwkEd25519 from "./JwkEd25519"
-import JwkEs256k from "./JwkEs256k"
+import JwkEd25519 from "./jwk-ed25519"
+import JwkEs256k from "./jwk-es256k"
 
 type SidetreeKeyJwk = JwkEs256k | JwkEd25519
 

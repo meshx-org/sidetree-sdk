@@ -1,13 +1,13 @@
 import { Ed25519KeyPair } from "@transmute/ed25519-key-pair"
-import ErrorCode from "./ErrorCode"
-import ISigner from "./interfaces/ISigner"
-import InputValidator from "./InputValidator"
-import IonError from "./IonError"
-import IonKey from "./IonKey"
+import ErrorCode from "./error-code"
+import ISigner from "./interfaces/signer"
+import InputValidator from "./input-validator"
+import IonError from "./ion-error"
+import IonKey from "./ion-key"
 import { JWS } from "@transmute/jose-ld"
-import OperationKeyType from "./enums/OperationKeyType"
+import OperationKeyType from "./enums/operation-key-type"
 import { Secp256k1KeyPair } from "@transmute/secp256k1-key-pair"
-import SidetreeKeyJwk from "./models/SidetreeKeyJwk"
+import SidetreeKeyJwk from "./models/sidetree-key-jwk"
 
 /**
  * An ISigner implementation that uses a given local private key.

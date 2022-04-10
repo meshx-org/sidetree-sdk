@@ -1,4 +1,4 @@
-import IonPublicKeyPurpose from "../enums/IonPublicKeyPurpose"
+import IonPublicKeyPurpose from "../enums/public-key-purpose"
 
 /**
  * Data model representing a public key in the DID Document.

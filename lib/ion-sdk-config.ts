@@ -1,4 +1,4 @@
-import IonNetwork from "./enums/IonNetwork"
+import IonNetwork from "./enums/ion-network"
 
 /**
  * Global configuration of the SDK.

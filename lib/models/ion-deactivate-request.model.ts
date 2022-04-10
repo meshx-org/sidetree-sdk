@@ -1,4 +1,4 @@
-import OperationType from "../enums/OperationType"
+import OperationType from "../enums/operation-type"
 
 /**
  * Data model representing a public key in the DID Document.

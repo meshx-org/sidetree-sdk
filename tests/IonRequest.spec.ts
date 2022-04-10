@@ -1,7 +1,7 @@
-import IonDocumentModel from "../lib/models/IonDocumentModel"
-import IonRequest from "../lib/IonRequest"
-import LocalSigner from "../lib/LocalSigner"
-import OperationType from "../lib/enums/OperationType"
+import IonDocumentModel from "../lib/models/ion-document.model"
+import IonRequest from "../lib/ion-request"
+import LocalSigner from "../lib/local-signer"
+import OperationType from "../lib/enums/operation-type"
 
 describe("IonRequest with Es256k keys", () => {
     describe("createCreateRequest", () => {

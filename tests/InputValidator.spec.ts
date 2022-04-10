@@ -1,5 +1,5 @@
-import InputValidator from "../lib/InputValidator"
-import OperationKeyType from "../lib/enums/OperationKeyType"
+import InputValidator from "../lib/input-validator"
+import OperationKeyType from "../lib/enums/operation-key-type"
 
 describe("IonKey", async () => {
     describe("validateEs256kOperationKey", () => {

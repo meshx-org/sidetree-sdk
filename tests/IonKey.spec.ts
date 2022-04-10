@@ -1,7 +1,7 @@
 import { IonKey, IonPublicKeyPurpose, JwkEd25519 } from "../lib/index"
-import ErrorCode from "../lib/ErrorCode"
+import ErrorCode from "../lib/error-code"
 import JasmineIonErrorValidator from "./JasmineIonErrorValidator"
-import JwkEs256k from "../lib/models/JwkEs256k"
+import JwkEs256k from "../lib/models/jwk-es256k"
 
 describe("IonKey", async () => {
     describe("generateEs256kOperationKeyPair()", async () => {

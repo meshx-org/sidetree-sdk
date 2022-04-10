@@ -1,12 +1,12 @@
-import Encoder from "./Encoder"
-import ErrorCode from "./ErrorCode"
-import IonError from "./IonError"
-import IonKey from "./IonKey"
-import IonPublicKeyPurpose from "./enums/IonPublicKeyPurpose"
-import JwkEd25519 from "./models/JwkEd25519"
-import JwkEs256k from "./models/JwkEs256k"
-import OperationKeyType from "./enums/OperationKeyType"
-import SidetreeKeyJwk from "./models/SidetreeKeyJwk"
+import Encoder from "./encoder"
+import ErrorCode from "./error-code"
+import IonError from "./ion-error"
+import IonKey from "./ion-key"
+import IonPublicKeyPurpose from "./enums/public-key-purpose"
+import JwkEd25519 from "./models/jwk-ed25519"
+import JwkEs256k from "./models/jwk-es256k"
+import OperationKeyType from "./enums/operation-key-type"
+import SidetreeKeyJwk from "./models/sidetree-key-jwk"
 
 /**
  * Class containing input validation methods.

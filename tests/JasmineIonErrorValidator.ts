@@ -1,4 +1,4 @@
-import IonError from "../lib/IonError"
+import IonError from "../lib/ion-error"
 
 /**
  * Encapsulates the helper functions for the tests.

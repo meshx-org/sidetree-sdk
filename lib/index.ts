@@ -1,19 +1,19 @@
 // NOTE: Aliases to classes and interfaces are used for external consumption.
 
 // SDK exports.
-import ISigner from "./interfaces/ISigner"
-import IonDid from "./IonDid"
-import IonDocumentModel from "./models/IonDocumentModel"
-import IonKey from "./IonKey"
-import IonNetwork from "./enums/IonNetwork"
-import IonPublicKeyModel from "./models/IonPublicKeyModel"
-import IonPublicKeyPurpose from "./enums/IonPublicKeyPurpose"
-import IonRequest from "./IonRequest"
-import IonSdkConfig from "./IonSdkConfig"
-import IonServiceModel from "./models/IonServiceModel"
-import JwkEd25519 from "./models/JwkEd25519"
-import JwkEs256k from "./models/JwkEs256k"
-import LocalSigner from "./LocalSigner"
+import ISigner from "./interfaces/signer"
+import IonDid from "./ion-did"
+import IonDocumentModel from "./models/ion-document.model"
+import IonKey from "./ion-key"
+import IonNetwork from "./enums/ion-network"
+import IonPublicKeyModel from "./models/ion-public-key.model"
+import IonPublicKeyPurpose from "./enums/public-key-purpose"
+import IonRequest from "./ion-request"
+import IonSdkConfig from "./ion-sdk-config"
+import IonServiceModel from "./models/ion-service.model"
+import JwkEd25519 from "./models/jwk-ed25519"
+import JwkEs256k from "./models/jwk-es256k"
+import LocalSigner from "./local-signer"
 
 export {
     ISigner,

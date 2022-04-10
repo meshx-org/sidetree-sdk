@@ -1,9 +1,9 @@
 import * as crypto from "crypto"
-import Encoder from "./Encoder"
-import ErrorCode from "./ErrorCode"
-import IonError from "./IonError"
-import IonSdkConfig from "./IonSdkConfig"
-import JsonCanonicalizer from "./JsonCanonicalizer"
+import Encoder from "./encoder"
+import ErrorCode from "./error-code"
+import IonError from "./ion-error"
+import IonSdkConfig from "./ion-sdk-config"
+import JsonCanonicalizer from "./json-canonicalizer"
 
 const multihashes = require("multihashes")
 

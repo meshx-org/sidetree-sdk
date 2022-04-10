@@ -1,6 +1,6 @@
-import ErrorCode from "../lib/ErrorCode"
+import ErrorCode from "../lib/error-code"
 import JasmineIonErrorValidator from "./JasmineIonErrorValidator"
-import LocalSigner from "../lib/LocalSigner"
+import LocalSigner from "../lib/local-signer"
 
 describe("LocalSigner", () => {
     describe("sign", () => {
