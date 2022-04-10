@@ -2,10 +2,13 @@
     "name": "@meshx-org/sidetree-sdk",
     "version": "0.6.0",
     "description": "TypeScript SDK for Sidetree",
-    "repository": "https://github.com/meshx-org/sidetree-sdk",
     "license": "Apache-2.0",
     "main": "dist/src/index.js",
     "types": "dist/src/index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/meshx-org/sidetree-sdk.git"
+    },
     "publishConfig": {
         "access": "public",
         "registry": "https://npm.pkg.github.com",
