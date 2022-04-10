@@ -14,15 +14,24 @@ parent:
 
 <div align="center">
 
-![GitHub branch checks state](https://img.shields.io/github/checks-status/meshx-org/sidetree-sdk/main)
-[![License: MIT](https://img.shields.io/github/license/meshx-org/sidetree-sdk)](https://opensource.org/licenses/Apache-2.0)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/meshx-org/sidetree-sdk/CI?label=CI)](https://github.com/meshx-org/sidetree-sdk/actions/workflows/ci.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/meshx-org/sidetree-sdk/Publish%20Package?label=Publish)](https://github.com/meshx-org/sidetree-sdk/actions/workflows/publish.yml)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/meshx-org/sidetree-sdk?color=g)
+![Lines of code](https://img.shields.io/tokei/lines/github/meshx-org/sidetree-sdk)
+[![License: Apache-2.0](https://img.shields.io/github/license/meshx-org/sidetree-sdk)](https://opensource.org/licenses/Apache-2.0)
 
 </div>
 
-TypeScript SDK for Sidetree
+---
+
+[TBD]
 
 ## Installation
 
 ```
 npm i @meshx-org/sidetree-sdk --save
 ```
+
+## License
+
+Sidetree SDK is open-sourced software licensed under the [Apache-2.0 license](LICENSE).
