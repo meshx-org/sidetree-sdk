@@ -6,6 +6,11 @@
     "license": "Apache-2.0",
     "main": "dist/src/index.js",
     "types": "dist/src/index.d.ts",
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://npm.pkg.github.com",
+        "main": "./dist/src/index.js"
+    },
     "dependencies": {
         "@transmute/ed25519-key-pair": "0.7.0-unstable.58",
         "@transmute/secp256k1-key-pair": "0.7.0-unstable.58",
