@@ -39,9 +39,11 @@ jobs:
               uses: phips28/gh-action-bump-version@master
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GITHUB_USER: github-actions
+                  GITHUB_EMAIL: github-actions@github.com
               with:
                   tag-prefix: "v"
-                  commit-message: 'CI: bumps version to {{version}} [skip ci]'
+                  commit-message: 'CI: bump version to {{version}} [skip ci]'
                   default: prerelease
                   minor-wording: "add,added,Adds,new"
                   major-wording: "MAJOR,cut-major"
