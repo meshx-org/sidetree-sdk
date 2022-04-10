@@ -19,6 +19,7 @@
     "devDependencies": {
         "@types/jasmine": "3.3.12",
         "@types/node": "^11.13.4",
+        "@types/randombytes": "^2.0.0",
         "@typescript-eslint/eslint-plugin": "^4.3.0",
         "@typescript-eslint/parser": "^4.3.0",
         "copyfiles": "2.3.0",
@@ -41,7 +42,7 @@
     },
     "scripts": {
         "build": "tsc && copyfiles \"lib/**/*.json\" dist && copyfiles \"tests/**/*.js*\" dist && copyfiles \"package.json\" dist",
-        "test": "npm run build && nyc jasmine --config=./tests/jasmine.json",
+        "test": "npm run build && nyc jasmine --config=./jasmine.json",
         "lint": "eslint --ext ts lib/ tests/",
         "format": "prettier --write .",
         "lint:fix": "eslint --ext ts lib/ tests/ --fix"

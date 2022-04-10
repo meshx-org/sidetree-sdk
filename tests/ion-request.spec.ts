@@ -1,9 +1,9 @@
 import IonDocumentModel from "../lib/models/ion-document.model"
-import IonRequest from "../lib/ion-request"
 import LocalSigner from "../lib/local-signer"
 import OperationType from "../lib/enums/operation-type"
+import SidetreeRequest from "../lib/sidetree-request"
 
-describe("IonRequest with Es256k keys", () => {
+describe("SidetreeRequest with Es256k keys", () => {
     describe("createCreateRequest", () => {
         it("should generate a create request with desired arguments", async () => {
             const recoveryKey = require("./vectors/inputs/jwkEs256k1Public.json")
@@ -19,7 +19,7 @@ describe("IonRequest with Es256k keys", () => {
                 services,
             }
             const input = { recoveryKey, updateKey, document }
-            const result = IonRequest.createCreateRequest(input)
+            const result = SidetreeRequest.createCreateRequest(input)
             expect(result.type).toEqual(OperationType.Create)
             expect(result.delta.updateCommitment).toEqual("EiDKIkwqO69IPG3pOlHkdb86nYt0aNxSHZu2r-bhEznjdA")
             expect(result.delta.patches.length).toEqual(1)
@@ -46,7 +46,7 @@ describe("IonRequest with Es256k keys", () => {
                 idsOfPublicKeysToRemove: ["someId2"],
             }
 
-            const result = await IonRequest.createUpdateRequest(input)
+            const result = await SidetreeRequest.createUpdateRequest(input)
             expect(result.didSuffix).toEqual("EiDyOQbbZAa3aiRzeCkV7LOx3SERjjH93EXoIM3UoN4oWg")
             expect(result.type).toEqual(OperationType.Update)
             expect(result.revealValue).toEqual("EiAJ-97Is59is6FKAProwDo870nmwCeP8n5nRRFwPpUZVQ")
@@ -65,7 +65,7 @@ describe("IonRequest with Es256k keys", () => {
                 signer: LocalSigner.create(require("./vectors/inputs/jwkEs256k1Private.json")),
             }
 
-            const result = await IonRequest.createUpdateRequest(input)
+            const result = await SidetreeRequest.createUpdateRequest(input)
             expect(result.didSuffix).toEqual("EiDyOQbbZAa3aiRzeCkV7LOx3SERjjH93EXoIM3UoN4oWg")
         })
     })
@@ -82,7 +82,7 @@ describe("IonRequest with Es256k keys", () => {
                 publicKeys,
                 services,
             }
-            const result = await IonRequest.createRecoverRequest({
+            const result = await SidetreeRequest.createRecoverRequest({
                 didSuffix: "EiDyOQbbZAa3aiRzeCkV7LOx3SERjjH93EXoIM3UoN4oWg",
                 recoveryPublicKey: require("./vectors/inputs/jwkEs256k1Public.json"),
                 nextRecoveryPublicKey: require("./vectors/inputs/jwkEs256k2Public.json"),
@@ -104,7 +104,7 @@ describe("IonRequest with Es256k keys", () => {
 
     describe("createDeactivateRequest", () => {
         it("should generate a deactivate request with the given arguments", async () => {
-            const result = await IonRequest.createDeactivateRequest({
+            const result = await SidetreeRequest.createDeactivateRequest({
                 didSuffix: "EiDyOQbbZAa3aiRzeCkV7LOx3SERjjH93EXoIM3UoN4oWg",
                 recoveryPublicKey: require("./vectors/inputs/jwkEs256k1Public.json"),
                 signer: LocalSigner.create(require("./vectors/inputs/jwkEs256k1Private.json")),
@@ -122,7 +122,7 @@ describe("IonRequest with Es256k keys", () => {
     describe("validateDidSuffix", () => {
         it("should throw if id is incorrect encoding", () => {
             try {
-                ;(IonRequest as any).validateDidSuffix("123456789012345678901234567890123456789012345/")
+                ;(SidetreeRequest as any).validateDidSuffix("123456789012345678901234567890123456789012345/")
                 fail()
             } catch (e) {
                 expect(e.message).toEqual("EncodedStringIncorrectEncoding: Given didSuffix must be base64url string.")
@@ -131,7 +131,7 @@ describe("IonRequest with Es256k keys", () => {
 
         it("should throw if id is not multihash", () => {
             try {
-                ;(IonRequest as any).validateDidSuffix("aaaaaaaa") // base64 but not multihash
+                ;(SidetreeRequest as any).validateDidSuffix("aaaaaaaa") // base64 but not multihash
                 fail()
             } catch (e) {
                 expect(e.message).toEqual(
@@ -142,7 +142,7 @@ describe("IonRequest with Es256k keys", () => {
 
         it("should throw if id is hashed with unsupported hash code", () => {
             try {
-                ;(IonRequest as any).validateDidSuffix("ERSIwvEfss45KstbKYbmQCEcRpAHPg") // this is sha1 (code 17), which is not the correct hashing algorithm (code 18)
+                ;(SidetreeRequest as any).validateDidSuffix("ERSIwvEfss45KstbKYbmQCEcRpAHPg") // this is sha1 (code 17), which is not the correct hashing algorithm (code 18)
                 fail()
             } catch (e) {
                 // eslint-disable-next-line
@@ -154,7 +154,7 @@ describe("IonRequest with Es256k keys", () => {
     })
 })
 
-describe("IonRequest with Ed25519 keys", () => {
+describe("SidetreeRequest with Ed25519 keys", () => {
     const didSuffix = "EiBks49Ah-ZxE1-6Se-PUDk_4_ffylpeqmfMCWUBwwTM-g"
 
     describe("createCreateRequest", () => {
@@ -172,7 +172,7 @@ describe("IonRequest with Ed25519 keys", () => {
                 services,
             }
             const input = { recoveryKey, updateKey, document }
-            const result = IonRequest.createCreateRequest(input)
+            const result = SidetreeRequest.createCreateRequest(input)
             expect(result.type).toEqual(OperationType.Create)
             expect(result.delta.updateCommitment).toEqual("EiCEDfGZfGqyrn2elMMLld_0lPTO1MyPn-LtYaebDb_qBw")
             expect(result.delta.patches.length).toEqual(1)
@@ -200,7 +200,7 @@ describe("IonRequest with Ed25519 keys", () => {
                 idsOfPublicKeysToRemove: ["someId2"],
             }
 
-            const result = await IonRequest.createUpdateRequest(input)
+            const result = await SidetreeRequest.createUpdateRequest(input)
             expect(result.didSuffix).toEqual(didSuffix)
             expect(result.type).toEqual(OperationType.Update)
             expect(result.revealValue).toEqual("EiDEn43TJxGpPXjVD-HWeR2i-OQSF8jUKxWA62OvCjc64w")
@@ -219,7 +219,7 @@ describe("IonRequest with Ed25519 keys", () => {
                 signer: LocalSigner.create(require("./vectors/inputs/jwkEd255191Private.json")),
             }
 
-            const result = await IonRequest.createUpdateRequest(input)
+            const result = await SidetreeRequest.createUpdateRequest(input)
             expect(result.didSuffix).toEqual(didSuffix)
         })
     })
@@ -236,7 +236,7 @@ describe("IonRequest with Ed25519 keys", () => {
                 publicKeys,
                 services,
             }
-            const result = await IonRequest.createRecoverRequest({
+            const result = await SidetreeRequest.createRecoverRequest({
                 didSuffix,
                 recoveryPublicKey: require("./vectors/inputs/jwkEd255191Public.json"),
                 nextRecoveryPublicKey: require("./vectors/inputs/jwkEd255192Public.json"),
@@ -258,7 +258,7 @@ describe("IonRequest with Ed25519 keys", () => {
 
     describe("createDeactivateRequest", () => {
         it("should generate a deactivate request with the given arguments", async () => {
-            const result = await IonRequest.createDeactivateRequest({
+            const result = await SidetreeRequest.createDeactivateRequest({
                 didSuffix,
                 recoveryPublicKey: require("./vectors/inputs/jwkEd255191Public.json"),
                 signer: LocalSigner.create(require("./vectors/inputs/jwkEd255191Private.json")),

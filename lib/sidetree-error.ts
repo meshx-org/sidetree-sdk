@@ -1,7 +1,7 @@
 /**
- * A class that represents an ION error.
+ * A class that represents an Sidetree error.
  */
-export default class IonError extends Error {
+export default class SidetreeError extends Error {
     constructor(public code: string, message: string) {
         super(`${code}: ${message}`)
 

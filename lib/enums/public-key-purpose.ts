@@ -1,7 +1,7 @@
 /**
  * DID Document key purpose.
  */
-enum IonPublicKeyPurpose {
+enum PublicKeyPurpose {
     Authentication = "authentication",
     AssertionMethod = "assertionMethod",
     CapabilityInvocation = "capabilityInvocation",
@@ -9,4 +9,4 @@ enum IonPublicKeyPurpose {
     KeyAgreement = "keyAgreement",
 }
 
-export default IonPublicKeyPurpose
+export default PublicKeyPurpose

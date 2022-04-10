@@ -1,15 +1,15 @@
 import Encoder from "./encoder"
 import IonDocumentModel from "./models/ion-document.model"
-import IonRequest from "./ion-request"
-import IonSdkConfig from "./ion-sdk-config"
 import JsonCanonicalizer from "./json-canonicalizer"
 import Multihash from "./multihash"
 import SidetreeKeyJwk from "./models/sidetree-key-jwk"
+import SidetreeRequest from "./sidetree-request"
+import SidetreeSdkConfig from "./sidetree-sdk-config"
 
 /**
  * Class containing DID related operations.
  */
-export default class IonDid {
+export default class SidetreeDid {
     /**
      * Creates a long-form DID.
      * @param input.document The initial state to be associate with the ION DID to be created using a `replace` document patch action.
@@ -19,16 +19,16 @@ export default class IonDid {
         updateKey: SidetreeKeyJwk
         document: IonDocumentModel
     }): string {
-        const createRequest = IonRequest.createCreateRequest(input)
+        const createRequest = SidetreeRequest.createCreateRequest(input)
 
-        const didUniqueSuffix = IonDid.computeDidUniqueSuffix(createRequest.suffixData)
+        const didUniqueSuffix = SidetreeDid.computeDidUniqueSuffix(createRequest.suffixData)
 
         // Add the network portion if not configured for mainnet.
         let shortFormDid
-        if (IonSdkConfig.network === undefined || IonSdkConfig.network === "mainnet") {
-            shortFormDid = `did:ion:${didUniqueSuffix}`
+        if (SidetreeSdkConfig.network === undefined || SidetreeSdkConfig.network === "mainnet") {
+            shortFormDid = `did:${SidetreeSdkConfig.didMethod}:${didUniqueSuffix}`
         } else {
-            shortFormDid = `did:ion:${IonSdkConfig.network}:${didUniqueSuffix}`
+            shortFormDid = `did:${SidetreeSdkConfig.didMethod}:${SidetreeSdkConfig.network}:${didUniqueSuffix}`
         }
 
         const initialState = {
@@ -49,7 +49,7 @@ export default class IonDid {
      */
     private static computeDidUniqueSuffix(suffixData: object): string {
         const canonicalizedStringBuffer = JsonCanonicalizer.canonicalizeAsBuffer(suffixData)
-        const multihash = Multihash.hash(canonicalizedStringBuffer, IonSdkConfig.hashAlgorithmInMultihashCode)
+        const multihash = Multihash.hash(canonicalizedStringBuffer, SidetreeSdkConfig.hashAlgorithmInMultihashCode)
         const encodedMultihash = Encoder.encode(multihash)
         return encodedMultihash
     }

@@ -1,11 +1,11 @@
 import Encoder from "./encoder"
 import ErrorCode from "./error-code"
-import IonError from "./ion-error"
-import IonKey from "./ion-key"
-import IonPublicKeyPurpose from "./enums/public-key-purpose"
 import JwkEd25519 from "./models/jwk-ed25519"
 import JwkEs256k from "./models/jwk-es256k"
 import OperationKeyType from "./enums/operation-key-type"
+import PublicKeyPurpose from "./enums/public-key-purpose"
+import SidetreeError from "./sidetree-error"
+import SidetreeKey from "./sidetree-key"
 import SidetreeKeyJwk from "./models/sidetree-key-jwk"
 
 /**
@@ -16,12 +16,12 @@ export default class InputValidator {
      * Validates the schema of a Ed25519 or secp256k1 JWK
      */
     public static validateOperationKey(operationKeyJwk: SidetreeKeyJwk, operationKeyType: OperationKeyType) {
-        if (IonKey.isJwkEs256k(operationKeyJwk)) {
+        if (SidetreeKey.isJwkEs256k(operationKeyJwk)) {
             InputValidator.validateEs256kOperationKey(operationKeyJwk, operationKeyType)
-        } else if (IonKey.isJwkEd25519(operationKeyJwk)) {
+        } else if (SidetreeKey.isJwkEd25519(operationKeyJwk)) {
             InputValidator.validateEd25519OperationKey(operationKeyJwk, operationKeyType)
         } else {
-            throw new IonError(ErrorCode.UnsupportedKeyType, `JWK key should be secp256k1 or Ed25519.`)
+            throw new SidetreeError(ErrorCode.UnsupportedKeyType, `JWK key should be secp256k1 or Ed25519.`)
         }
     }
 
@@ -35,7 +35,7 @@ export default class InputValidator {
         }
         for (const property in operationKeyJwk) {
             if (!allowedProperties.has(property)) {
-                throw new IonError(
+                throw new SidetreeError(
                     ErrorCode.PublicKeyJwkEs256kHasUnexpectedProperty,
                     `SECP256K1 JWK key has unexpected property '${property}'.`
                 )
@@ -43,14 +43,14 @@ export default class InputValidator {
         }
 
         if (operationKeyJwk.crv !== "secp256k1") {
-            throw new IonError(
+            throw new SidetreeError(
                 ErrorCode.JwkEs256kMissingOrInvalidCrv,
                 `SECP256K1 JWK 'crv' property must be 'secp256k1' but got '${operationKeyJwk.crv}.'`
             )
         }
 
         if (operationKeyJwk.kty !== "EC") {
-            throw new IonError(
+            throw new SidetreeError(
                 ErrorCode.JwkEs256kMissingOrInvalidKty,
                 `SECP256K1 JWK 'kty' property must be 'EC' but got '${operationKeyJwk.kty}.'`
             )
@@ -58,18 +58,27 @@ export default class InputValidator {
 
         // `x` and `y` need 43 Base64URL encoded bytes to contain 256 bits.
         if (operationKeyJwk.x.length !== 43) {
-            throw new IonError(ErrorCode.JwkEs256kHasIncorrectLengthOfX, `SECP256K1 JWK 'x' property must be 43 bytes.`)
+            throw new SidetreeError(
+                ErrorCode.JwkEs256kHasIncorrectLengthOfX,
+                `SECP256K1 JWK 'x' property must be 43 bytes.`
+            )
         }
 
         if (operationKeyJwk.y.length !== 43) {
-            throw new IonError(ErrorCode.JwkEs256kHasIncorrectLengthOfY, `SECP256K1 JWK 'y' property must be 43 bytes.`)
+            throw new SidetreeError(
+                ErrorCode.JwkEs256kHasIncorrectLengthOfY,
+                `SECP256K1 JWK 'y' property must be 43 bytes.`
+            )
         }
 
         if (
             operationKeyType === OperationKeyType.Private &&
             (operationKeyJwk.d === undefined || operationKeyJwk.d.length !== 43)
         ) {
-            throw new IonError(ErrorCode.JwkEs256kHasIncorrectLengthOfD, `SECP256K1 JWK 'd' property must be 43 bytes.`)
+            throw new SidetreeError(
+                ErrorCode.JwkEs256kHasIncorrectLengthOfD,
+                `SECP256K1 JWK 'd' property must be 43 bytes.`
+            )
         }
     }
 
@@ -83,7 +92,7 @@ export default class InputValidator {
         }
         for (const property in operationKeyJwk) {
             if (!allowedProperties.has(property)) {
-                throw new IonError(
+                throw new SidetreeError(
                     ErrorCode.PublicKeyJwkEd25519HasUnexpectedProperty,
                     `Ed25519 JWK key has unexpected property '${property}'.`
                 )
@@ -91,14 +100,14 @@ export default class InputValidator {
         }
 
         if (operationKeyJwk.crv !== "Ed25519") {
-            throw new IonError(
+            throw new SidetreeError(
                 ErrorCode.JwkEd25519MissingOrInvalidCrv,
                 `Ed25519 JWK 'crv' property must be 'Ed25519' but got '${operationKeyJwk.crv}.'`
             )
         }
 
         if (operationKeyJwk.kty !== "OKP") {
-            throw new IonError(
+            throw new SidetreeError(
                 ErrorCode.JwkEd25519MissingOrInvalidKty,
                 `Ed25519 JWK 'kty' property must be 'OKP' but got '${operationKeyJwk.kty}.'`
             )
@@ -106,14 +115,20 @@ export default class InputValidator {
 
         // `x` needs 43 Base64URL encoded bytes to contain 256 bits.
         if (operationKeyJwk.x.length !== 43) {
-            throw new IonError(ErrorCode.JwkEd25519HasIncorrectLengthOfX, `Ed25519 JWK 'x' property must be 43 bytes.`)
+            throw new SidetreeError(
+                ErrorCode.JwkEd25519HasIncorrectLengthOfX,
+                `Ed25519 JWK 'x' property must be 43 bytes.`
+            )
         }
 
         if (
             operationKeyType === OperationKeyType.Private &&
             (operationKeyJwk.d === undefined || operationKeyJwk.d.length !== 43)
         ) {
-            throw new IonError(ErrorCode.JwkEd25519HasIncorrectLengthOfD, `Ed25519 JWK 'd' property must be 43 bytes.`)
+            throw new SidetreeError(
+                ErrorCode.JwkEd25519HasIncorrectLengthOfD,
+                `Ed25519 JWK 'd' property must be 43 bytes.`
+            )
         }
     }
 
@@ -123,31 +138,34 @@ export default class InputValidator {
     public static validateId(id: string) {
         const maxIdLength = 50
         if (id.length > maxIdLength) {
-            throw new IonError(
+            throw new SidetreeError(
                 ErrorCode.IdTooLong,
                 `Key ID length ${id.length} exceed max allowed length of ${maxIdLength}.`
             )
         }
 
         if (!Encoder.isBase64UrlString(id)) {
-            throw new IonError(ErrorCode.IdNotUsingBase64UrlCharacterSet, `Key ID '${id}' is not a Base64URL string.`)
+            throw new SidetreeError(
+                ErrorCode.IdNotUsingBase64UrlCharacterSet,
+                `Key ID '${id}' is not a Base64URL string.`
+            )
         }
     }
 
     /**
      * Validates the given public key purposes.
      */
-    public static validatePublicKeyPurposes(purposes?: IonPublicKeyPurpose[]) {
+    public static validatePublicKeyPurposes(purposes?: PublicKeyPurpose[]) {
         // Nothing to validate if `purposes` is undefined.
         if (purposes === undefined) {
             return
         }
 
         // Validate that all purposes are be unique.
-        const processedPurposes: Set<IonPublicKeyPurpose> = new Set()
+        const processedPurposes: Set<PublicKeyPurpose> = new Set()
         for (const purpose of purposes) {
             if (processedPurposes.has(purpose)) {
-                throw new IonError(
+                throw new SidetreeError(
                     ErrorCode.PublicKeyPurposeDuplicated,
                     `Public key purpose '${purpose}' already specified.`
                 )

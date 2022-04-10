@@ -1,5 +1,6 @@
 import InputValidator from "../lib/input-validator"
 import OperationKeyType from "../lib/enums/operation-key-type"
+import SidetreeError from "../lib/sidetree-error"
 
 describe("IonKey", async () => {
     describe("validateEs256kOperationKey", () => {
@@ -163,7 +164,9 @@ describe("IonKey", async () => {
                 InputValidator.validateEd25519OperationKey(publicKeyWithInvalidX, OperationKeyType.Public)
                 fail()
             } catch (e) {
-                expect(e.message).toEqual(`JwkEd25519HasIncorrectLengthOfX: Ed25519 JWK 'x' property must be 43 bytes.`)
+                expect((e as SidetreeError).message).toEqual(
+                    `JwkEd25519HasIncorrectLengthOfX: Ed25519 JWK 'x' property must be 43 bytes.`
+                )
             }
         })
 

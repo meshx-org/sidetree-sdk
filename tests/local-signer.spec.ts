@@ -1,5 +1,5 @@
 import ErrorCode from "../lib/error-code"
-import JasmineIonErrorValidator from "./jasmine-ion-error-validator"
+import JasmineSidetreeErrorValidator from "./jasmine-ion-error-validator"
 import LocalSigner from "../lib/local-signer"
 
 describe("LocalSigner", () => {
@@ -11,7 +11,7 @@ describe("LocalSigner", () => {
                 ...jwkEs256k1PrivateKey,
                 kty: "XXX",
             }
-            await JasmineIonErrorValidator.expectIonErrorToBeThrownAsync(
+            await JasmineSidetreeErrorValidator.expectSidetreeErrorToBeThrownAsync(
                 async () => signer.sign({ alg: "ES256K" }, {}),
                 ErrorCode.UnsupportedKeyType
             )

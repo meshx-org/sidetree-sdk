@@ -5,10 +5,8 @@ import InputValidator from "./input-validator"
 import IonCreateRequestModel from "./models/ion-create-request.model"
 import IonDeactivateRequestModel from "./models/ion-deactivate-request.model"
 import IonDocumentModel from "./models/ion-document.model"
-import IonError from "./ion-error"
 import IonPublicKeyModel from "./models/ion-public-key.model"
 import IonRecoverRequestModel from "./models/ion-recover-request.model"
-import IonSdkConfig from "./ion-sdk-config"
 import IonServiceModel from "./models/ion-service.model"
 import IonUpdateRequestModel from "./models/ion-update-request.model"
 import JsonCanonicalizer from "./json-canonicalizer"
@@ -16,12 +14,14 @@ import Multihash from "./multihash"
 import OperationKeyType from "./enums/operation-key-type"
 import OperationType from "./enums/operation-type"
 import PatchAction from "./enums/patch-action"
+import SidetreeError from "./sidetree-error"
 import SidetreeKeyJwk from "./models/sidetree-key-jwk"
+import SidetreeSdkConfig from "./sidetree-sdk-config"
 
 /**
  * Class containing operations related to ION requests.
  */
-export default class IonRequest {
+export default class SidetreeRequest {
     /**
      * Creates an ION DID create request.
      * @param input.document The initial state to be associate with the ION DID to be created using a `replace` document patch action.
@@ -41,12 +41,12 @@ export default class IonRequest {
         InputValidator.validateOperationKey(updateKey, OperationKeyType.Public)
 
         // Validate all given DID Document keys.
-        IonRequest.validateDidDocumentKeys(didDocumentKeys)
+        SidetreeRequest.validateDidDocumentKeys(didDocumentKeys)
 
         // Validate all given service.
-        IonRequest.validateServices(services)
+        SidetreeRequest.validateServices(services)
 
-        const hashAlgorithmInMultihashCode = IonSdkConfig.hashAlgorithmInMultihashCode
+        const hashAlgorithmInMultihashCode = SidetreeSdkConfig.hashAlgorithmInMultihashCode
 
         const patches = [
             {
@@ -60,7 +60,7 @@ export default class IonRequest {
             patches,
         }
 
-        IonRequest.validateDeltaSize(delta)
+        SidetreeRequest.validateDeltaSize(delta)
 
         const deltaHash = Multihash.canonicalizeThenHashThenEncode(delta, hashAlgorithmInMultihashCode)
 
@@ -72,13 +72,13 @@ export default class IonRequest {
             ),
         }
 
-        const operationRequest = {
+        const operatSidetreeRequest = {
             type: OperationType.Create,
             suffixData: suffixData,
             delta: delta,
         }
 
-        return operationRequest
+        return operatSidetreeRequest
     }
 
     public static async createDeactivateRequest(input: {
@@ -87,12 +87,12 @@ export default class IonRequest {
         signer: ISigner
     }): Promise<IonDeactivateRequestModel> {
         // Validate DID suffix
-        IonRequest.validateDidSuffix(input.didSuffix)
+        SidetreeRequest.validateDidSuffix(input.didSuffix)
 
         // Validates recovery public key
         InputValidator.validateOperationKey(input.recoveryPublicKey, OperationKeyType.Public)
 
-        const hashAlgorithmInMultihashCode = IonSdkConfig.hashAlgorithmInMultihashCode
+        const hashAlgorithmInMultihashCode = SidetreeSdkConfig.hashAlgorithmInMultihashCode
         const revealValue = Multihash.canonicalizeThenHashThenEncode(
             input.recoveryPublicKey,
             hashAlgorithmInMultihashCode
@@ -122,7 +122,7 @@ export default class IonRequest {
         signer: ISigner
     }): Promise<IonRecoverRequestModel> {
         // Validate DID suffix
-        IonRequest.validateDidSuffix(input.didSuffix)
+        SidetreeRequest.validateDidSuffix(input.didSuffix)
 
         // Validate recovery public key
         InputValidator.validateOperationKey(input.recoveryPublicKey, OperationKeyType.Public)
@@ -134,12 +134,12 @@ export default class IonRequest {
         InputValidator.validateOperationKey(input.nextUpdatePublicKey, OperationKeyType.Public)
 
         // Validate all given DID Document keys.
-        IonRequest.validateDidDocumentKeys(input.document.publicKeys)
+        SidetreeRequest.validateDidDocumentKeys(input.document.publicKeys)
 
         // Validate all given service.
-        IonRequest.validateServices(input.document.services)
+        SidetreeRequest.validateServices(input.document.services)
 
-        const hashAlgorithmInMultihashCode = IonSdkConfig.hashAlgorithmInMultihashCode
+        const hashAlgorithmInMultihashCode = SidetreeSdkConfig.hashAlgorithmInMultihashCode
         const revealValue = Multihash.canonicalizeThenHashThenEncode(
             input.recoveryPublicKey,
             hashAlgorithmInMultihashCode
@@ -195,7 +195,7 @@ export default class IonRequest {
         idsOfPublicKeysToRemove?: string[]
     }): Promise<IonUpdateRequestModel> {
         // Validate DID suffix
-        IonRequest.validateDidSuffix(input.didSuffix)
+        SidetreeRequest.validateDidSuffix(input.didSuffix)
 
         // Validate update public key
         InputValidator.validateOperationKey(input.updatePublicKey, OperationKeyType.Public)
@@ -204,10 +204,10 @@ export default class IonRequest {
         InputValidator.validateOperationKey(input.nextUpdatePublicKey, OperationKeyType.Public)
 
         // Validate all given service.
-        IonRequest.validateServices(input.servicesToAdd)
+        SidetreeRequest.validateServices(input.servicesToAdd)
 
         // Validate all given DID Document keys.
-        IonRequest.validateDidDocumentKeys(input.publicKeysToAdd)
+        SidetreeRequest.validateDidDocumentKeys(input.publicKeysToAdd)
 
         // Validate all given service id to remove.
         if (input.idsOfServicesToRemove !== undefined) {
@@ -268,7 +268,7 @@ export default class IonRequest {
             patches.push(patch)
         }
 
-        const hashAlgorithmInMultihashCode = IonSdkConfig.hashAlgorithmInMultihashCode
+        const hashAlgorithmInMultihashCode = SidetreeSdkConfig.hashAlgorithmInMultihashCode
         const revealValue = Multihash.canonicalizeThenHashThenEncode(
             input.updatePublicKey,
             hashAlgorithmInMultihashCode
@@ -313,7 +313,7 @@ export default class IonRequest {
         const publicKeyIdSet: Set<string> = new Set()
         for (const publicKey of publicKeys) {
             if (Array.isArray(publicKey.publicKeyJwk)) {
-                throw new IonError(
+                throw new SidetreeError(
                     ErrorCode.DidDocumentPublicKeyMissingOrIncorrectType,
                     `DID Document key 'publicKeyJwk' property is not a non-array object.`
                 )
@@ -323,7 +323,7 @@ export default class IonRequest {
 
             // 'id' must be unique across all given keys.
             if (publicKeyIdSet.has(publicKey.id)) {
-                throw new IonError(
+                throw new SidetreeError(
                     ErrorCode.DidDocumentPublicKeyIdDuplicated,
                     `DID Document key with ID '${publicKey.id}' already exists.`
                 )
@@ -338,9 +338,9 @@ export default class IonRequest {
         if (services !== undefined && services.length !== 0) {
             const serviceIdSet: Set<string> = new Set()
             for (const service of services) {
-                IonRequest.validateService(service)
+                SidetreeRequest.validateService(service)
                 if (serviceIdSet.has(service.id)) {
-                    throw new IonError(ErrorCode.DidDocumentServiceIdDuplicated, "Service id has to be unique")
+                    throw new SidetreeError(ErrorCode.DidDocumentServiceIdDuplicated, "Service id has to be unique")
                 }
                 serviceIdSet.add(service.id)
             }
@@ -353,19 +353,19 @@ export default class IonRequest {
         const maxTypeLength = 30
         if (service.type.length > maxTypeLength) {
             const errorMessage = `Service endpoint type length ${service.type.length} exceeds max allowed length of ${maxTypeLength}.`
-            throw new IonError(ErrorCode.ServiceTypeTooLong, errorMessage)
+            throw new SidetreeError(ErrorCode.ServiceTypeTooLong, errorMessage)
         }
 
         // Throw error if `serviceEndpoint` is an array.
         if (Array.isArray(service.serviceEndpoint)) {
             const errorMessage = "Service endpoint value cannot be an array."
-            throw new IonError(ErrorCode.ServiceEndpointCannotBeAnArray, errorMessage)
+            throw new SidetreeError(ErrorCode.ServiceEndpointCannotBeAnArray, errorMessage)
         }
 
         if (typeof service.serviceEndpoint === "string") {
             const uri = URI.parse(service.serviceEndpoint)
             if (uri.error !== undefined) {
-                throw new IonError(
+                throw new SidetreeError(
                     ErrorCode.ServiceEndpointStringNotValidUri,
                     `Service endpoint string '${service.serviceEndpoint}' is not a URI.`
                 )
@@ -375,9 +375,9 @@ export default class IonRequest {
 
     private static validateDeltaSize(delta: object) {
         const deltaBuffer = JsonCanonicalizer.canonicalizeAsBuffer(delta)
-        if (deltaBuffer.length > IonSdkConfig.maxCanonicalizedDeltaSizeInBytes) {
-            const errorMessage = `Delta of ${deltaBuffer.length} bytes exceeded limit of ${IonSdkConfig.maxCanonicalizedDeltaSizeInBytes} bytes.`
-            throw new IonError(ErrorCode.DeltaExceedsMaximumSize, errorMessage)
+        if (deltaBuffer.length > SidetreeSdkConfig.maxCanonicalizedDeltaSizeInBytes) {
+            const errorMessage = `Delta of ${deltaBuffer.length} bytes exceeded limit of ${SidetreeSdkConfig.maxCanonicalizedDeltaSizeInBytes} bytes.`
+            throw new SidetreeError(ErrorCode.DeltaExceedsMaximumSize, errorMessage)
         }
     }
 }

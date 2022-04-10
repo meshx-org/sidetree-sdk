@@ -1,9 +1,9 @@
 import * as crypto from "crypto"
 import Encoder from "./encoder"
 import ErrorCode from "./error-code"
-import IonError from "./ion-error"
-import IonSdkConfig from "./ion-sdk-config"
 import JsonCanonicalizer from "./json-canonicalizer"
+import SidetreeError from "./sidetree-error"
+import SidetreeSdkConfig from "./sidetree-sdk-config"
 
 const multihashes = require("multihashes")
 
@@ -35,7 +35,7 @@ export default class Multihash {
                 hash = crypto.createHash("sha256").update(content).digest()
                 break
             default:
-                throw new IonError(
+                throw new SidetreeError(
                     ErrorCode.MultihashUnsupportedHashAlgorithm,
                     `Hash algorithm defined in multihash code ${hashAlgorithmInMultihashCode} is not supported.`
                 )
@@ -87,22 +87,22 @@ export default class Multihash {
     ) {
         let multihash
         const multihashBuffer = Encoder.decodeAsBuffer(encodedMultihash, inputContextForErrorLogging)
+
         try {
             multihash = multihashes.decode(multihashBuffer)
         } catch {
-            throw new IonError(
+            throw new SidetreeError(
                 ErrorCode.MultihashStringNotAMultihash,
                 `Given ${inputContextForErrorLogging} string '${encodedMultihash}' is not a multihash after decoding.`
             )
         }
 
-        const hashAlgorithmInMultihashCode = IonSdkConfig.hashAlgorithmInMultihashCode
+        const hashAlgorithmInMultihashCode = SidetreeSdkConfig.hashAlgorithmInMultihashCode
 
         if (hashAlgorithmInMultihashCode !== multihash.code) {
-            throw new IonError(
+            throw new SidetreeError(
                 ErrorCode.MultihashUnsupportedHashAlgorithm,
-                `Given ${inputContextForErrorLogging} uses unsupported multihash algorithm with code ${multihash.code}, ` +
-                    `should use ${hashAlgorithmInMultihashCode} or change IonSdkConfig to desired hashing algorithm.`
+                `Given ${inputContextForErrorLogging} uses unsupported multihash algorithm with code ${multihash.code}, should use ${hashAlgorithmInMultihashCode} or change SidetreeSdkConfig to desired hashing algorithm.`
             )
         }
     }

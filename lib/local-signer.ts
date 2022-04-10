@@ -2,11 +2,11 @@ import { Ed25519KeyPair } from "@transmute/ed25519-key-pair"
 import ErrorCode from "./error-code"
 import ISigner from "./interfaces/signer"
 import InputValidator from "./input-validator"
-import IonError from "./ion-error"
-import IonKey from "./ion-key"
 import { JWS } from "@transmute/jose-ld"
 import OperationKeyType from "./enums/operation-key-type"
 import { Secp256k1KeyPair } from "@transmute/secp256k1-key-pair"
+import SidetreeError from "./sidetree-error"
+import SidetreeKey from "./sidetree-key"
 import SidetreeKeyJwk from "./models/sidetree-key-jwk"
 
 /**
@@ -29,7 +29,7 @@ export default class LocalSigner implements ISigner {
             ...this.privateKey,
             d: undefined,
         }
-        if (IonKey.isJwkEs256k(publicKeyJwk)) {
+        if (SidetreeKey.isJwkEs256k(publicKeyJwk)) {
             const key = await Secp256k1KeyPair.from({
                 type: "JsonWebKey2020",
                 publicKeyJwk,
@@ -42,7 +42,7 @@ export default class LocalSigner implements ISigner {
             })
             const compactJws = await jwsSigner.sign({ data: content })
             return compactJws
-        } else if (IonKey.isJwkEd25519(publicKeyJwk)) {
+        } else if (SidetreeKey.isJwkEd25519(publicKeyJwk)) {
             const key = await Ed25519KeyPair.from({
                 type: "JsonWebKey2020",
                 publicKeyJwk,
@@ -56,7 +56,7 @@ export default class LocalSigner implements ISigner {
             const compactJws = await jwsSigner.sign({ data: content })
             return compactJws
         } else {
-            throw new IonError(ErrorCode.UnsupportedKeyType, `JWK key should be secp256k1 or Ed25119.`)
+            throw new SidetreeError(ErrorCode.UnsupportedKeyType, `JWK key should be secp256k1 or Ed25119.`)
         }
     }
 }
