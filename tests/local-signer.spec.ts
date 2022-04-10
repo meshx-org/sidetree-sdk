@@ -1,5 +1,5 @@
 import ErrorCode from "../lib/error-code"
-import JasmineIonErrorValidator from "./JasmineIonErrorValidator"
+import JasmineIonErrorValidator from "./jasmine-ion-error-validator"
 import LocalSigner from "../lib/local-signer"
 
 describe("LocalSigner", () => {

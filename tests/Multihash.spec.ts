@@ -1,5 +1,5 @@
 import ErrorCode from "../lib/error-code"
-import JasmineIonErrorValidator from "./JasmineIonErrorValidator"
+import JasmineIonErrorValidator from "./jasmine-ion-error-validator"
 import Multihash from "../lib/multihash"
 
 describe("Multihash", async () => {

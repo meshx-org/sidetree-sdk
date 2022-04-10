@@ -9,7 +9,7 @@ import { IonDid, IonKey, IonPublicKeyPurpose, IonSdkConfig } from "../lib/index"
 import ErrorCode from "../lib/error-code"
 import IonDocumentModel from "../lib/models/ion-document.model"
 import IonNetwork from "../lib/enums/ion-network"
-import JasmineIonErrorValidator from "./JasmineIonErrorValidator"
+import JasmineIonErrorValidator from "./jasmine-ion-error-validator"
 import { b64urlDecode } from "@waiting/base64"
 
 describe("IonDid", async () => {
