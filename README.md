@@ -26,7 +26,9 @@ parent:
 
 ---
 
-> This repository is forked from [gjgd/ion-sdk](https://github.com/gjgd/ion-sdk)
+## Welcome!
+
+The Sidetree SDK is an open source fork of [gjgd/ion-sdk](https://github.com/gjgd/ion-sdk).
 
 [TBD]
 
@@ -36,6 +38,18 @@ parent:
 npm i @meshx-org/sidetree-sdk --save
 ```
 
+## Code of Conduct
+
+This project has adopted the [Contributor Covenant Code of Conduct v2.1](CODE_OF_CONDUCT.md). For more information see the [Code of Conduct FAQ](https://www.contributor-covenant.org/faq), or contact [opensource@meshx.co](mailto:opensource@meshx.co) with any additional questions or comments.
+
+## Security Policy
+
+Please see our [security policy](./SECURITY.md) for additional details about responsible disclosure of security related issues.
+
 ## License
 
-Sidetree SDK is open-sourced software licensed under the [Apache-2.0 license](LICENSE).
+Sidetree SDK is open-sourced software licensed under the [Apache-2.0 License](LICENSE).
+
+## Copyright
+
+Copyright Sidetree SDK Contributors. See [NOTICE](NOTICE.txt) for details.
