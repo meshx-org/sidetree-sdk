@@ -19,7 +19,7 @@
         "main": "./dist/src/index.js"
     },
     "dependencies": {
-        "@transmute/ed25519-key-pair": "0.7.0-unstable.58",
+        "@transmute/ed25519-key-pair": "0.7.0-unstable.60",
         "@transmute/jose-ld": "0.7.0-unstable.60",
         "@transmute/secp256k1-key-pair": "0.7.0-unstable.58",
         "@waiting/base64": "4.2.9",
@@ -47,7 +47,7 @@
         "jasmine-reporters": "^2.5.0",
         "jasmine-spec-reporter": "4.2.1",
         "nyc": "15.0.1",
-        "ts-node": "8.3.0",
+        "ts-node": "10.8.1",
         "tslint": "5.11.0",
         "tslint-config-standard": "8.0.1",
         "typescript": "3.9.6"
