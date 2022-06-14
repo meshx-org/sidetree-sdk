@@ -19,17 +19,17 @@
         "main": "./dist/src/index.js"
     },
     "dependencies": {
-        "@transmute/ed25519-key-pair": "0.7.0-unstable.58",
+        "@transmute/ed25519-key-pair": "0.7.0-unstable.60",
         "@transmute/jose-ld": "0.7.0-unstable.60",
         "@transmute/secp256k1-key-pair": "0.7.0-unstable.58",
         "@waiting/base64": "4.2.9",
         "canonicalize": "1.0.8",
-        "multihashes": "0.4.14",
+        "multihashes": "4.0.3",
         "randombytes": "2.1.0",
-        "uri-js": "4.4.0"
+        "uri-js": "4.4.1"
     },
     "devDependencies": {
-        "@types/jasmine": "3.3.12",
+        "@types/jasmine": "4.0.3",
         "@types/node": "^17.0.38",
         "@types/randombytes": "^2.0.0",
         "@typescript-eslint/eslint-plugin": "^4.3.0",
@@ -43,10 +43,10 @@
         "eslint-plugin-promise": "^4.2.1",
         "eslint-plugin-standard": "^5.0.0",
         "husky": "^7.0.4",
-        "jasmine": "^3.8.0",
+        "jasmine": "^4.2.0",
         "jasmine-reporters": "^2.5.0",
         "jasmine-spec-reporter": "4.2.1",
-        "nyc": "15.0.1",
+        "nyc": "15.1.0",
         "ts-node": "10.8.1",
         "tslint": "5.11.0",
         "tslint-config-standard": "8.0.1",
