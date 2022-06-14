@@ -24,7 +24,7 @@
         "@transmute/secp256k1-key-pair": "0.7.0-unstable.58",
         "@waiting/base64": "4.2.9",
         "canonicalize": "1.0.8",
-        "multihashes": "0.4.14",
+        "multihashes": "4.0.3",
         "randombytes": "2.1.0",
         "uri-js": "4.4.1"
     },
