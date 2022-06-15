@@ -45,7 +45,7 @@
         "husky": "^7.0.4",
         "jasmine": "^4.2.0",
         "jasmine-reporters": "^2.5.0",
-        "jasmine-spec-reporter": "4.2.1",
+        "jasmine-spec-reporter": "7.0.0",
         "nyc": "15.1.0",
         "ts-node": "10.8.1",
         "tslint": "6.1.3",
