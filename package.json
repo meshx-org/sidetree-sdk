@@ -32,7 +32,7 @@
         "@types/jasmine": "4.0.3",
         "@types/node": "^18.0.0",
         "@types/randombytes": "^2.0.0",
-        "@typescript-eslint/eslint-plugin": "^4.3.0",
+        "@typescript-eslint/eslint-plugin": "^4.33.0",
         "@typescript-eslint/parser": "^4.33.0",
         "copyfiles": "2.4.1",
         "eslint": "^7.10.0",
