@@ -21,7 +21,7 @@
     "dependencies": {
         "@transmute/ed25519-key-pair": "0.7.0-unstable.63",
         "@transmute/jose-ld": "0.7.0-unstable.63",
-        "@transmute/secp256k1-key-pair": "0.7.0-unstable.62",
+        "@transmute/secp256k1-key-pair": "0.7.0-unstable.63",
         "@waiting/base64": "4.2.9",
         "canonicalize": "1.0.8",
         "multihashes": "4.0.3",
