@@ -19,7 +19,7 @@
         "main": "./dist/src/index.js"
     },
     "dependencies": {
-        "@transmute/ed25519-key-pair": "0.7.0-unstable.66",
+        "@transmute/ed25519-key-pair": "0.7.0-unstable.70",
         "@transmute/jose-ld": "0.7.0-unstable.66",
         "@transmute/secp256k1-key-pair": "0.7.0-unstable.66",
         "@waiting/base64": "4.2.9",
