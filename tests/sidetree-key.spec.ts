@@ -30,7 +30,7 @@ describe("SidetreeKey", async () => {
 
             expect(didDocumentPublicKey.id).toEqual(keyId)
             expect(didDocumentPublicKey.purposes).toEqual([PublicKeyPurpose.Authentication])
-            expect(didDocumentPublicKey.type).toEqual("EcdsaSecp256k1VerificationKey2019")
+            expect(didDocumentPublicKey.type).toEqual("JsonWebKey2020")
 
             expect(Object.keys(didDocumentPublicKey.publicKeyJwk).length).toEqual(4)
             expect(Object.keys(privateKey).length).toEqual(5)

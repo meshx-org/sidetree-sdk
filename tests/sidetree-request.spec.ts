@@ -24,7 +24,7 @@ describe("SidetreeRequest with Es256k keys", () => {
             expect(result.delta.updateCommitment).toEqual("EiDKIkwqO69IPG3pOlHkdb86nYt0aNxSHZu2r-bhEznjdA")
             expect(result.delta.patches.length).toEqual(1)
             expect(result.suffixData.recoveryCommitment).toEqual("EiBfOZdMtU6OBw8Pk879QtZ-2J-9FbbjSZyoaA_bqD4zhA")
-            expect(result.suffixData.deltaHash).toEqual("EiCfDWRnYlcD9EGA3d_5Z1AHu-iYqMbJ9nfiqdz5S8VDbg")
+            expect(result.suffixData.deltaHash).toEqual("EiARXM3RTDqcLWJYIKEDNzSvthIr8zaFxtFf7Q1G3R95AA")
         })
     })
 
@@ -51,7 +51,7 @@ describe("SidetreeRequest with Es256k keys", () => {
             expect(result.type).toEqual(OperationType.Update)
             expect(result.revealValue).toEqual("EiAJ-97Is59is6FKAProwDo870nmwCeP8n5nRRFwPpUZVQ")
             expect(result.signedData).toEqual(
-                "eyJhbGciOiJFUzI1NksifQ.eyJ1cGRhdGVLZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJzZWNwMjU2azEiLCJ4IjoibklxbFJDeDBleUJTWGNRbnFEcFJlU3Y0enVXaHdDUldzc29jOUxfbmo2QSIsInkiOiJpRzI5Vks2bDJVNXNLQlpVU0plUHZ5RnVzWGdTbEsyZERGbFdhQ004RjdrIn0sImRlbHRhSGFzaCI6IkVpQXZsbVVRYy1jaDg0Slp5bmdQdkJzUkc3eWh4aUFSenlYOE5lNFQ4LTlyTncifQ.Q9MuoQqFlhYhuLDgx4f-0UM9QyCfZp_cXt7vnQ4ict5P4_ZWKwG4OXxxqFvdzE-e3ZkEbvfR0YxEIpYO9MrPFw"
+                "eyJhbGciOiJFUzI1NksifQ.eyJ1cGRhdGVLZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJzZWNwMjU2azEiLCJ4IjoibklxbFJDeDBleUJTWGNRbnFEcFJlU3Y0enVXaHdDUldzc29jOUxfbmo2QSIsInkiOiJpRzI5Vks2bDJVNXNLQlpVU0plUHZ5RnVzWGdTbEsyZERGbFdhQ004RjdrIn0sImRlbHRhSGFzaCI6IkVpQWVrT2dJQ0JBVDBUbkhueWRJRjVRTHR1TGFQZjJvcXVKdVhEZm4tdXU5TncifQ.qqVKgrmN55kkknZb1OpTZGsfNquOPiLYX5p6KkplNKR2-HlDiljTBYrHZX2RzJtbCaEhnhMGFrQ-honSDBtKOA"
             )
             expect(result.delta.updateCommitment).toEqual("EiDKIkwqO69IPG3pOlHkdb86nYt0aNxSHZu2r-bhEznjdA")
             expect(result.delta.patches.length).toEqual(4) // add/remove service and add/remove key
@@ -95,7 +95,7 @@ describe("SidetreeRequest with Es256k keys", () => {
             expect(result.revealValue).toEqual("EiAJ-97Is59is6FKAProwDo870nmwCeP8n5nRRFwPpUZVQ")
             expect(result.type).toEqual(OperationType.Recover)
             expect(result.signedData).toEqual(
-                "eyJhbGciOiJFUzI1NksifQ.eyJyZWNvdmVyeUNvbW1pdG1lbnQiOiJFaURLSWt3cU82OUlQRzNwT2xIa2RiODZuWXQwYU54U0hadTJyLWJoRXpuamRBIiwicmVjb3ZlcnlLZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJzZWNwMjU2azEiLCJ4IjoibklxbFJDeDBleUJTWGNRbnFEcFJlU3Y0enVXaHdDUldzc29jOUxfbmo2QSIsInkiOiJpRzI5Vks2bDJVNXNLQlpVU0plUHZ5RnVzWGdTbEsyZERGbFdhQ004RjdrIn0sImRlbHRhSGFzaCI6IkVpQm9HNlFtamlTSm5ON2phaldnaV9vZDhjR3dYSm9Nc2RlWGlWWTc3NXZ2SkEifQ.58n6Fel9DmRAXxwcJMUwYaUhmj5kigKMNrGjr7eJaJcjOmjvwlKLSjiovWiYrb9yjkfMAjpgbAdU_2EDI1_lZw"
+                "eyJhbGciOiJFUzI1NksifQ.eyJyZWNvdmVyeUNvbW1pdG1lbnQiOiJFaURLSWt3cU82OUlQRzNwT2xIa2RiODZuWXQwYU54U0hadTJyLWJoRXpuamRBIiwicmVjb3ZlcnlLZXkiOnsia3R5IjoiRUMiLCJjcnYiOiJzZWNwMjU2azEiLCJ4IjoibklxbFJDeDBleUJTWGNRbnFEcFJlU3Y0enVXaHdDUldzc29jOUxfbmo2QSIsInkiOiJpRzI5Vks2bDJVNXNLQlpVU0plUHZ5RnVzWGdTbEsyZERGbFdhQ004RjdrIn0sImRlbHRhSGFzaCI6IkVpQnFETGtGUFBOREQ4LW9XZFk4RmRfUFVTb1JjTFFVUnJnTWhRNnNneUlucGcifQ.4ZlcssabRgIkkhu2v8gtl8erqGYYGTivTP0ZcYcMsKEZBjWJJQ55k1sltCG8xvD7hxC1NYXYBKC0VPW9hJE3Rw"
             )
             expect(result.delta.updateCommitment).toEqual("EiBJGXo0XUiqZQy0r-fQUHKS3RRVXw5nwUpqGVXEGuTs-g")
             expect(result.delta.patches.length).toEqual(1) // replace

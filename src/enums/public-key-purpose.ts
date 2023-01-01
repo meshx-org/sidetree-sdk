@@ -1,6 +1,4 @@
-/**
- * DID Document key purpose.
- */
+/** DID Document key purpose. */
 enum PublicKeyPurpose {
     Authentication = "authentication",
     AssertionMethod = "assertionMethod",

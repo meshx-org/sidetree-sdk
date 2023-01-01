@@ -1,6 +1,4 @@
-/**
- * Sidetree patch actions. These are the valid values in the action property of a patch.
- */
+/** Sidetree patch actions. These are the valid values in the action property of a patch. */
 enum PatchAction {
     Replace = "replace",
     AddPublicKeys = "add-public-keys",

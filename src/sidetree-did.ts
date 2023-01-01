@@ -6,9 +6,7 @@ import SidetreeKeyJwk from "./models/sidetree-key-jwk"
 import SidetreeRequest from "./sidetree-request"
 import SidetreeSdkConfig from "./sidetree-sdk-config"
 
-/**
- * Class containing DID related operations.
- */
+/** Class containing DID related operations. */
 export default class SidetreeDid {
     /**
      * Creates a long-form DID.

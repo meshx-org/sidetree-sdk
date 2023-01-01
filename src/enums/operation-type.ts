@@ -1,6 +1,4 @@
-/**
- * ION operation types.
- */
+/**  Sidetree operation types. */
 enum OperationType {
     Create = "create",
     Update = "update",
