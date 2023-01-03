@@ -16,8 +16,8 @@ parent:
 
 <div align="center">
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/meshx-org/sidetree-sdk/CI?label=CI)](https://github.com/meshx-org/sidetree-sdk/actions/workflows/ci.yml)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/meshx-org/sidetree-sdk/Publish%20Package?label=Publish)](https://github.com/meshx-org/sidetree-sdk/actions/workflows/publish.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/meshx-org/sidetree-sdk/ci.yml?branch=main?label=CI)](https://github.com/meshx-org/sidetree-sdk/actions/workflows/ci.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/meshx-org/sidetree-sdk/publish.yml?branch=main?label=Publish)](https://github.com/meshx-org/sidetree-sdk/actions/workflows/publish.yml)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/meshx-org/sidetree-sdk?color=g)
 ![Lines of code](https://img.shields.io/tokei/lines/github/meshx-org/sidetree-sdk)
 [![License: Apache-2.0](https://img.shields.io/github/license/meshx-org/sidetree-sdk)](https://opensource.org/licenses/Apache-2.0)
